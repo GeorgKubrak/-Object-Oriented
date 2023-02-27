@@ -7,9 +7,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class RadioTest {
     @ParameterizedTest
     @CsvSource({
-
-            "1, -7, 0",
-            "2, 15, 0",
+            "1, -9, 0",
+            "2, 25, 0",
+            "32, 11, 0",
             "1, -1, 0",
             "2, 0, 0",
             "3, 1, 1",
@@ -17,8 +17,9 @@ public class RadioTest {
             "5, 9, 9",
             "6, 10, 0",
     })
-    public void setSelectStation(String nameTest, int inputCurrentStation, int expectedStation) {
+    void setCurrentStation(String nameTest, int inputCurrentStation, int expectedStation) {
         Radio radio = new Radio();
+
         radio.setCurrentStation(inputCurrentStation);
         Assertions.assertEquals(radio.getCurrentStation(), expectedStation);
     }
@@ -31,7 +32,7 @@ public class RadioTest {
             "3, 8, 9",
             "4, 9, 0",
     })
-    public void setNextStation(String nameTest, int oldCurrentStation, int expectedStation) {
+    void setNextStation(String nameTest, int oldCurrentStation, int expectedStation) {
         Radio radio = new Radio();
         radio.setCurrentStation(oldCurrentStation);
         radio.setNextStation();
@@ -46,22 +47,23 @@ public class RadioTest {
             "3, 8, 7",
             "4, 9, 8",
     })
-    public void setPrevCurrentStation(String nameTest, int oldCurrentStation, int expectedStation) {
+    void setPrevCurrentStation(String nameTest, int oldCurrentStation, int expectedStation) {
         Radio radio = new Radio();
         radio.setCurrentStation(oldCurrentStation);
         radio.setPrevStation();
         Assertions.assertEquals(radio.getCurrentStation(), expectedStation);
     }
 
+
     @ParameterizedTest
     @CsvSource({
 
             "1, 0, 1",
             "2, 1, 2",
-            "3, 9, 10",
-            "4, 10, 10",
+            "3, 99, 100",
+            "4, 100, 100",
     })
-    public void setVolumeUp(String nameTest, int oldCurrentVolume, int expectedVolume) {
+    void setVolumeUp(String nameTest, int oldCurrentVolume, int expectedVolume) {
         Radio radio = new Radio();
         radio.setCurrentVolume(oldCurrentVolume);
         radio.setVolumeUp();
@@ -73,13 +75,14 @@ public class RadioTest {
 
             "1, 0, 0",
             "2, 1, 0",
-            "3, 9, 8",
-            "4, 10, 9",
+            "3, 99, 98",
+            "4, 100, 99",
     })
-    public void setVolumeDown(String nameTest, int oldCurrentVolume, int expectedVolume) {
+    void setVolumeDown(String nameTest, int oldCurrentVolume, int expectedVolume) {
         Radio radio = new Radio();
         radio.setCurrentVolume(oldCurrentVolume);
         radio.setVolumeDown();
         Assertions.assertEquals(radio.getCurrentVolume(), expectedVolume);
     }
+
 }
